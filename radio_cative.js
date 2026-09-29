@@ -4,35 +4,53 @@ elements.radio_cative = {
     // Bright radioactive blue
     color: "#00BFFF",
 
-    // Solid, immovable material
-    behavior: behaviors.WALL,
+    // POWDER: falls and piles like sand
+    behavior: behaviors.POWDER,
 
-    category: "solids",
+    category: "powders",
     state: "solid",
     density: 19050,
 
-    // Make it behave like a powerful radioactive source
+    // Strong visual glow
+    glow: true,
+
+    // RADIOACTIVE HEAT
+    temp: 300,
+
+    // EXTREMELY FLAMMABLE
+    burn: 100,
+
+    // Burns for a long time
+    burnTime: 150,
+
+    // Becomes radioactive ash after burning
+    burnInto: "ash",
+
+    // Blue-white radioactive flame
+    fireColor: "#00BFFF",
+
+    // Neutron radiation
     tick: function(pixel) {
 
-        // Enable emissive/glow behavior
+        // Keep radioactive glow active
         pixel.glow = true;
 
-        // Slight temperature increase
-        pixel.temp += 2;
+        // Slowly heat the material
+        pixel.temp += 1;
 
-        // 8 directions around the RADIO-CATIVE pixel
+        // 8 surrounding directions
         let directions = [
-            [0, -1],   // up
-            [0, 1],    // down
-            [-1, 0],   // left
-            [1, 0],    // right
-            [-1, -1],  // upper-left
-            [1, -1],   // upper-right
-            [-1, 1],   // lower-left
-            [1, 1]     // lower-right
+            [0, -1],
+            [0, 1],
+            [-1, 0],
+            [1, 0],
+            [-1, -1],
+            [1, -1],
+            [-1, 1],
+            [1, 1]
         ];
 
-        // Extremely strong neutron emission
+        // VERY HIGH neutron emission
         for (let i = 0; i < directions.length; i++) {
 
             if (Math.random() < 0.90) {
@@ -46,8 +64,8 @@ elements.radio_cative = {
             }
         }
 
-        // Occasional extra neutron burst
-        if (Math.random() < 0.25) {
+        // Additional radiation burst
+        if (Math.random() < 0.30) {
 
             for (let i = 0; i < directions.length; i++) {
 
